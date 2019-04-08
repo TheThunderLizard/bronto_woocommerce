@@ -222,7 +222,7 @@ function wcb_order_send( $order_id ) {
 			if (isset($_SESSION['brMobileNumber'])) {
 				$brMobileNumber = (string) $_SESSION['brMobileNumber'];
 				$json_string['mobilePhoneNumber'] = $brMobileNumber;
-				$json_string['orderSmsConsentChecked'] = 1;
+				$json_string['orderSmsConsentChecked'] = 'true';
 				//unset mobile num storage
 				unset($_SESSION['brMobileNumber']);
 			};
