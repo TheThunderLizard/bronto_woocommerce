@@ -1,5 +1,6 @@
 === Bronto for WooCommerce ===
 Contributors: TheThunderLizard
+Donate link: https://www.bronto.com
 Tags: analytics, email, marketing, bronto, woocommerce
 Requires at least: 3.0
 Tested up to: 

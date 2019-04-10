@@ -185,7 +185,8 @@ function wcb_order_send( $order_id ) {
 			$product_instance = wc_get_product($lineItem['product_id']);
 
 			$CartLineItems[] = array (
-				'sku' => (string) $product->get_sku(),
+				//'sku' => (string) $product->get_sku(),
+				'sku' => (string) htmlspecialchars($product->get_id()), //alternate sku as needed
 				'name' => (string) htmlspecialchars($product->get_name()), //escape double quotes with htmlspecialchars()
 				'description' =>  (string) htmlspecialchars($product_instance->get_short_description()),
 				'category' => implode(" ", $product->get_category_ids()),
@@ -205,7 +206,7 @@ function wcb_order_send( $order_id ) {
 				'currency' => $currency,
 				'subtotal' => $subtotal,
 				'discountAmount' => $discountAmount,
-				'taxAmount' => number_format($taxAmount, 2), 
+				'taxAmount' => $taxAmount, 
 				'grandTotal' => $grandTotal,
 				'customerOrderId' => $orderId,
 				'cartUrl' => $cartUrl,
@@ -222,7 +223,7 @@ function wcb_order_send( $order_id ) {
 			if (isset($_SESSION['brMobileNumber'])) {
 				$brMobileNumber = (string) $_SESSION['brMobileNumber'];
 				$json_string['mobilePhoneNumber'] = $brMobileNumber;
-				$json_string['orderSmsConsentChecked'] = 'true';
+				$json_string['orderSmsConsentChecked'] = true;
 				//unset mobile num storage
 				unset($_SESSION['brMobileNumber']);
 			};
@@ -243,7 +244,33 @@ function wcb_order_send( $order_id ) {
 				echo '<script type="text/javascript">';
 				echo 'brontoCart = ' . $json_string . ';';
 				echo '</script>';
-			
+				
+				//coupon manager redemption tracking
+				$bronto_settings = get_option('bronto_settings');
+				if (!empty($bronto_settings['bronto_coupon_manager_id'])) {
+					if( $order->get_used_coupons() ) {
+						
+						//set redemption script once
+						echo '<script type="text/javascript" src="https://c.bron.to/assets/coupon/js/bcm.js"></script>';
+						
+						//coupon for loop
+						foreach( $order->get_used_coupons() as $coupon) {
+							$coupon;
+							
+							//redeem for each
+							echo '<script type="text/javascript">';
+							echo '__bcm.redeemCoupon("' . $bronto_settings['bronto_coupon_manager_id'] . '", {';
+							echo '	email: "' . $emailAddress . '",';
+							echo '	coupon: "' . $coupon . '",';
+							echo '	orderId: "' . $orderId . '",';
+							echo '	orderSubtotal: "' . $grandTotal . '",';
+							echo '	orderDiscount: "' . $discountAmount . '"';
+							echo '});';
+							echo '</script>';
+						} //endfor of coupon
+					}
+				} //endif coupon manager
+				
 			} //endif $debug
 		} //endif count($lineItems) > 0
 	}//end if is_wc_endpoint_url( 'order-received' )
@@ -357,7 +384,7 @@ function wcb_cart_send() {
 			'currency' => $currency,
 			'subtotal' => $subtotal,
 			'discountAmount' => $discountAmount,
-			'taxAmount' => number_format($taxAmount, 2), 
+			'taxAmount' => $taxAmount, 
 			'grandTotal' => $grandTotal,
 			'cartUrl' => $brontoCartUrl,
 			'lineItems' => $cartLineItems
@@ -382,14 +409,12 @@ function wcb_cart_send() {
 			echo 'brontoCart = ' . $json_string . ';';
 			echo '</script>';
 			//count, prevent multi-run
-			++$cartRunCnt;
 		} //endif $debug
 	} else {
 		echo '<script type="text/javascript">';
 		echo 'brontoCart = {};';
 		echo '</script>';
 		//count, prevent multi-run
-		++$cartRunCnt;		
 	} //endif count($lineItems) > 0
 }
 
@@ -492,7 +517,7 @@ function wcb_cart_send_checkout() {
 			'currency' => $currency,
 			'subtotal' => $subtotal,
 			'discountAmount' => $discountAmount,
-			'taxAmount' => number_format($taxAmount, 2), 
+			'taxAmount' => $taxAmount, 
 			'grandTotal' => $grandTotal,
 			'cartUrl' => $brontoCartUrl,
 			'lineItems' => $cartLineItems

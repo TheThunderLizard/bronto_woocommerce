@@ -23,13 +23,17 @@ class WPBrontoAdmin {
 
     function help() {
         $content = '';
-        $content = '<ol>
+        $content = '<style>code{font-size:10px;} h4{font-weight: 600; text-transform: uppercase; } input[type="checkbox"], .regular-text {margin:0px 0px 18px 0px;} div.inside h3 {padding: 10px !important; border: 1px solid #999; border-radius: 4px; margin:0px !important; font-weight:600 !important;} div.inside > p {padding: 10px; border:1px solid #efefef; background-color:#f6f6f6; margin: 0px 4px 10px 4px; !important;}</style>
+        			<ol>
                       <li><a href="#help-1">Where do I find my Bronto Script Manager ID?</a></li>
                       <li><a href="#help-2">How do I add a Bronto email sign up into my sidebar?</a></li>
                       <li><a href="#help-3">Where do I find my Bronto Direct Add ID?</a></li>
                       <li><a href="#help-4">Where do I find my Bronto Pop-up Manaer ID?</a></li>
+                      <li><a href="#help-4">Where do I find my Coupon Manager ID?</a></li>
+                      <li><a href="#help-5">What is SMS Order Consent?</a></li>
+                      <li><a href="#help-6">What is this "PDP Selector" setting?</a></li>
                     </ol>
-                    <p><a name="help-1"></a><h2>1) Where do I find my Bronto Script Manager ID?</h2></p>
+                    <h3 id="help-1">1. Where do I find my Bronto Script Manager ID?</h3>
                     <p>
                       You can find your Bronto Script Manager ID by going to SETTINGS &raquo; INTEGRATIONS &raquo; <a href="https://app.bronto.com/mail/pref/script_manager/">SCRIPT MANAGER</a> in Bronto.
                       If you click  <strong>get code</strong> the overlay will load with your unique script.
@@ -37,20 +41,26 @@ class WPBrontoAdmin {
 
                       Once you have added the Script Manager ID you will be able to toggle features on and off from script manager in Bronto.
                     </p>
-                    <p><a name="help-2"></a><h2>2) How do I add a Bronto email sign up into my sidebar?</h2></p>
+                    <h3 id="help-2">2. How do I add a Bronto email sign up into my sidebar?</h3>
                     <p>
-                      Make sure you have added your Direct Add ID.<br />
-                      Then you can find the widget under APPEARANCE &raquo; WIDGETS titled &quot;Bronto: Email Sign Up&quot;.
+                      Make sure you have added your Direct Add ID.  Then you can find the widget under APPEARANCE &raquo; WIDGETS titled &quot;Bronto: Email Sign Up&quot;.
                     </p>
-                    <p><a name="help-3"></a><h2>3) Where do I find my Bronto Direct Add ID?</h2></p>
+                    <h3 id="help-3">3. Where do I find my Bronto Direct Add ID?</h3>
                     <p>
-                      You can find your Direct Add ID by going to <a href="https://app.bronto.com/mail/pref/data_exchange/#Mail_SitePref_TrackingPref">SETTINGS &raquo; DATA EXCHANGE</a>.<br />
-                      In the section labeled "Direct Add" find the image URL, then scroll right and copy the value after <code>&id=</code> but before <code>&email=</code>.
+                      You can find your Direct Add ID by going to <a href="https://app.bronto.com/mail/pref/data_exchange/#Mail_SitePref_TrackingPref">SETTINGS &raquo; DATA EXCHANGE</a>.<br />  In the section labeled "Direct Add" find the image URL, then scroll right and copy the value after <code>&id=</code> but before <code>&email=</code>.
                     </p>
-                    <p><a name="help-4"></a><h2>4) Where do I find my Pop-up Manager ID?</h2></p>
+                    <h3 id="help-4">4. Where do I find my Pop-up Manager ID?</h3>
                     <p>
-                      You can find your Pop-up Manager ID by going to <a href="https://app.bronto.com/mail/apps/app/1/">CONTACTS &raquo; GROW &raquo; POP-UP MANAGER</a>.<br />
-                      Click on <strong>script tag</strong>. Then copy the value that appears after <code>bronto-popup-id=</code> (without the quotes).
+                      You can find your Coupon Manager ID by going to <a href="https://app.bronto.com/mail/apps/app/2/">COMMERCE &raquo; COUPON MANAGR &raquo; SETTINGS</a>.<br />
+                      In the overlay that loads you will see "Account ID" and a value that looks like this: <code>yW5XxZKGFM6nJpBuZCmabNdMeKEsbsQI8euRMqLczpWU</code>.  Copy this value.
+                    </p>
+                    <h3 id="help-5">5. What is SMS Order Consent?</h3>
+                    <p>
+                      SMS Order consent is a paid feature that allows you to trigger order notifications via text message to your customers.  The opt-in is displayed in checkout and consent must be given on each order.
+                    </p>
+                    <h3 id="help-6">6. What is this "PDP Selector" setting?</h3>
+                    <p>
+                      The PDP selector is a "css selector" used to determine where you want web recommendations to appear.
                     </p>';
 
         $content = $this->postbox('bronto-help', 'FAQ', $content);
@@ -61,23 +71,35 @@ class WPBrontoAdmin {
         $bronto_settings = $this->process_settings();
 
         $content = '<p>The settings below help to deploy <a href="https://help.bronto.com/bmp/reference/r_bmp_scripts_overview.html">Bronto Script Manager</a> to your site, which will allow you to easily deploy other features to your WooCommerce store. You can find this ID on your Bronto <a href="https://app.bronto.com/mail/pref/script_manager/">Script Manager page</a>.</p>
-            <p>Insert your Bronto List ID to add a newsletter checkbox on the checkout page. To find a List ID, open the list in Bronto and copy the value in the lower right corner of the page - looks like this: <code>010300000000040000000000060007008000</code>.</p>
-            <table class="form-table">';
+            <p>Insert your Bronto List ID to add a newsletter checkbox on the checkout page. To find a List ID, open the list in Bronto and copy the value in the lower right corner of the page - looks like this: <code>010300000000040000000000060007008000</code>.</p>';
 
         if (function_exists('wp_nonce_field')) {
           $content .= wp_nonce_field('bronto-update-settings', '_wpnonce', true, false);
         }
-        $content .= '<tr><th scope="row"><label for="bronto_script_manager_id">Script Manager ID</label></th><td><input type="text" class="regular-text" name="bronto_script_manager_id" placeholder="Script Manager ID" value="' . $bronto_settings['bronto_script_manager_id'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_cart_debug">Enable Cart Debug (print logging)</label></th><td><input type="checkbox" name="bronto_popup" value="true" ' . checked($bronto_settings['bronto_cart_debug'], 'true', false) . ' /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_newsletter_text">Subscribe to newsletter text</label></th><td><input type="text" class="regular-text" name="bronto_newsletter_text" placeholder="Eg. Sign-up For our Emails" value="' . $bronto_settings['bronto_newsletter_text'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_newsletter_list_id">List ID (enables checkout opt-in)</label></th><td><input type="text" class="regular-text" name="bronto_newsletter_list_id" placeholder="Bronto list ID" value="' . $bronto_settings['bronto_newsletter_list_id'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_direct_add_id">Direct Add ID</label></th><td><input type="text" class="regular-text" name="bronto_direct_add_id" placeholder="Bronto Direct Add ID" value="' . $bronto_settings['bronto_direct_add_id'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_popup">Enable Bronto signup forms</label></th><td><input type="checkbox" name="bronto_popup" value="true" ' . checked($bronto_settings['bronto_popup'], 'true', false) . ' /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_popup_id">Add your Pop-up Manager ID</label></th><td><input type="text" class="regular-text" name="bronto_popup_id" placeholder="Bronto Pop-up Manager ID" value="' . $bronto_settings['bronto_popup_id'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_sms_order_updates_text">Enable SMS order consent</label></th><td><input type="text" class="regular-text" name="bronto_sms_order_updates_text" placeholder="Eg. I\'d like Text Message updates for this order." value="' . $bronto_settings['bronto_sms_order_updates_text'] . '" /></td></tr>';
-        $content .= '<tr><th scope="row"><label for="bronto_configuration_warning">Disable Configuration Warning</label></th><td><input type="checkbox" name="admin_settings_message" value="true" ' . checked($bronto_settings['admin_settings_message'], 'true', false) . ' /></td></tr>';
-        $content .= '</table>';
-        $content .= '<p>This will automatically install the Bronto script needed for signup forms. Learn more about Bronto <a href="https://help.bronto.com/hc/en-us/articles/360002035871-Install-Bronto-Signup-Forms#verify-your-installation">Signup forms.</a></p>';
+        $content .= '<style>code{font-size:10px;} h4{font-weight: 600 !important;} input[type="checkbox"], .regular-text {margin:0px 0px 18px 0px;} input[name^="bronto"]{padding:5px; border-radius:5px; background-color:#efefef;} .inline {display:inline-block; font-weight:100 !important;} div.inside  input[type="checkbox"]{margin: 0px 10px 0px 0px;}</style>';
+        $content .= '<div><label for="bronto_script_manager_id"><h4>Script Manager ID</h4></label><input type="text" class="regular-text" name="bronto_script_manager_id" placeholder="Script Manager ID" value="' . $bronto_settings['bronto_script_manager_id'] . '" /></div>';
+        $content .= '<div><input type="checkbox" name="bronto_popup" value="true" ' . checked($bronto_settings['bronto_cart_debug'], 'true', false) . ' /><label for="bronto_cart_debug"><h4 class="inline">Enable Cart Debug (print logging)</h4></label></div>';
+        $content .= '<hr>';
+        $content .= '<div><label for="bronto_newsletter_text"><h4>Subscribe to newsletter text</h4></label><input type="text" class="regular-text" name="bronto_newsletter_text" placeholder="Eg. Sign-up For our Emails" value="' . $bronto_settings['bronto_newsletter_text'] . '" /></div>';
+        $content .= '<div><label for="bronto_newsletter_list_id"><h4>List ID (enables checkout opt-in)</h4></label><input type="text" class="regular-text" name="bronto_newsletter_list_id" placeholder="Bronto list ID" value="' . $bronto_settings['bronto_newsletter_list_id'] . '" /></div>';
+		$content .= '<div><label for="bronto_direct_add_id"><h4>Direct Add ID</h4></label><input type="text" class="regular-text" name="bronto_direct_add_id" placeholder="Bronto Direct Add ID" value="' . $bronto_settings['bronto_direct_add_id'] . '" /></div>';
+		$content .= '<hr>';
+        $content .= '<div><label for="bronto_sms_order_updates_text"><h4>Enable SMS order consent</h4></label><input type="text" class="regular-text" name="bronto_sms_order_updates_text" placeholder="Eg. I\'d like Text Message updates for this order." value="' . $bronto_settings['bronto_sms_order_updates_text'] . '" /></div>';
+		$content .= '<hr>';
+		$content .= '<div><label for="bronto_popup_id"><h4>Add your Pop-up Manager ID</h4></label><input type="text" class="regular-text" name="bronto_popup_id" placeholder="Bronto Pop-up Manager ID" value="' . $bronto_settings['bronto_popup_id'] . '" /></div>';
+		$content .= '<div><input type="checkbox" name="bronto_popup" value="true" ' . checked($bronto_settings['bronto_popup'], 'true', false) . ' /><label for="bronto_popup"><h4 class="inline">Enable Bronto signup forms (widget)</h4></label></div>';
+        $content .= '<p>This will automatically install the Bronto script needed for signup forms.</p>';
+        $content .= '<hr>';
+        $content .= '<div><label for="bronto_coupon_manager_id"><h4>Add your Coupon Manager ID</h4></label><input type="text" class="regular-text" name="bronto_coupon_manager_id" placeholder="Bronto Coupon Manager ID" value="' . $bronto_settings['bronto_coupon_manager_id'] . '" /></div>';
+        $content .= '<hr>';
+        $content .= '<div><label for="bronto_web_recs_pdp"><h4>Web Recs - "CSS Selector" for your Product Detail Page</h4></label><input type="text" class="regular-text" name="bronto_web_recs_pdp" placeholder="div.class.class" value="' . $bronto_settings['bronto_web_recs_pdp'] . '" /></div>';
+        $content .= '<p>This CSS selector is used to target then insert 3 specific "div" tags into which Bronto Web Recommendations may load.  Learn more here <a href="https://help.bronto.com/bmp/concept/c_bmp_app_recommendations_web_div_tags.html">Placing Div Tags on your website.</a></p>';
+        $content .= '<div><label for="bronto_web_recs_div1"><h4 class="inline">Label - Rec Block 1 (optional) &nbsp;&nbsp;</h4></label><input type="text" name="bronto_web_recs_div1" placeholder="Related Items" value="' . $bronto_settings['bronto_web_recs_div1'] . '" /></div>';
+        $content .= '<div><label for="bronto_web_recs_div2"><h4 class="inline">Label - Rec Block 2 (optional) &nbsp;&nbsp;</h4></label><input type="text" name="bronto_web_recs_div2" placeholder="Others Also Viewed" value="' . $bronto_settings['bronto_web_recs_div2'] . '" /></div>';
+        $content .= '<div><label for="bronto_web_recs_div3"><h4 class="inline">Label - Rec Block 3 (optional) &nbsp;&nbsp;</h4></label><input type="text" name="bronto_web_recs_div3" placeholder="Just For You" value="' . $bronto_settings['bronto_web_recs_div3'] . '" /></div>';
+        $content .= '<div><input type="checkbox" name="bronto_web_recs_enabled" value="true" ' . checked($bronto_settings['bronto_web_recs_enabled'], 'true', false) . ' /><label for="bronto_web_recs_enabled"><h4 class="inline">Enable Web Recs ("render" function)</h4></label></div>';
+        $content .= '<hr>';
+        $content .= '<div><label for="bronto_configuration_warning"><h4>Disable Configuration Warning</h4></label><input type="checkbox" name="admin_settings_message" value="true" ' . checked($bronto_settings['admin_settings_message'], 'true', false) . ' /></div>';
         
         $wrapped_content = $this->postbox('bronto-settings', 'Connect to Bronto', $content);
         
@@ -96,7 +118,7 @@ class WPBrontoAdmin {
                     $bronto_settings['bronto_script_manager_id'] = $_POST['bronto_script_manager_id'];
                 }
 
-                $bronto_setting_keys = ['bronto_script_manager_id', 'admin_settings_message', 'bronto_subscribe_checkbox', 'bronto_newsletter_list_id', 'bronto_newsletter_text', 'bronto_sms_order_updates_text', 'bronto_cart_debug', 'bronto_direct_add_id', 'bronto_popup', 'bronto_popup_id'];
+                $bronto_setting_keys = ['bronto_script_manager_id', 'admin_settings_message', 'bronto_subscribe_checkbox', 'bronto_newsletter_list_id', 'bronto_newsletter_text', 'bronto_sms_order_updates_text', 'bronto_cart_debug', 'bronto_web_recs_enabled','bronto_web_recs_pdp','bronto_web_recs_div1','bronto_web_recs_div2','bronto_web_recs_div3', 'bronto_coupon_manager_id', 'bronto_direct_add_id', 'bronto_popup', 'bronto_popup_id'];
                 $bronto_updated_settings = array_fill_keys($bronto_setting_keys, '');
                 
                 foreach($_POST as $key => $value) {
@@ -142,7 +164,7 @@ class WPBrontoAdmin {
       echo <<<EOT
         <div class="wrap">
           <div class="dashboard-widgets-wrap">
-            <h2>{$title}</h2>
+            <h3>{$title}</h3>
             <form method="post" action="">
               <div id="dashboard-widgets" class="metabox-holder">
                 <div class="postbox-container" style="width:60%;">

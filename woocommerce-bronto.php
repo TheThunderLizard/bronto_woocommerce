@@ -1,21 +1,21 @@
 <?php
 /**
  * Plugin Name: Bronto for WooCommerce V1
- * Plugin URI: http://wordpress.org/extend/plugins/woocommerce-bronto/
+ * Plugin URI: https://github.com/TheThunderLizard/bronto_woocommerce
  * Description: A plugin to automatically sync your WooCommerce carts, orders, and newsletter sign-ups.  Also enables Browse Recovery, Cart recovery, and pop-up sign-up and checkout opt-in.
  * Version: 1.0.0
- * Author: Bronto, Inc.
- * Author URI: https://www.bronto.com
+ * Author: ThunderLizard
+ * Author URI: https://github.com/TheThunderLizard/bronto_woocommerce
  * Requires at least: 
  * Tested up to: 
- * WC requires at least: 2.0
+ * WC requires at least: 3.0
  * WC tested up to: 3.5.0
  * Text Domain: woocommerce-bronto
  * Domain Path: /i18n/languages/
  *
  * @package WooCommerceBronto
  * @category Core
- * @author Bronto
+ * @author ThunderLizard
  */
 if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly
@@ -49,14 +49,14 @@ final class WooCommerceBronto {
 
   /**
    * @var WooCommerceBronto The single instance of the class
-   * @since 2.0.0
+   * @since 1.0.0
    */
   protected static $_instance = null;
 
   /**
    * Get plugin version number.
    *
-   * @since 2.0.0
+   * @since 1.0.0
    * @static
    * @return int
    */
@@ -341,12 +341,20 @@ class WPBronto {
             $bronto_settings = array(
                 'installed' => 'true',
                 'bronto_script_manager_id' => '',
+                'bronto_cart_debug' => '',
                 'bronto_newsletter_list_id' => '',
                 'admin_settings_message' => '',
                 'bronto_newsletter_text' => '',
                 'bronto_sms_order_updates_text' => '',
-                'bronto_cart_debug' => '',
-                'bronto_popup' => ''
+                'bronto_coupon_manager_id' => '',
+                'bronto_popup' => '',
+                'bronto_popup_id' => '',
+                'bronto_direct_add_id' => '',
+                'bronto_web_recs_pdp' => '',
+                'bronto_web_recs_enabled' => '',
+                'bronto_web_recs_div1'=> '',
+                'bronto_web_recs_div2'=> '',
+                'bronto_web_recs_div3'=> ''
             );
             update_option('bronto_settings', $bronto_settings);
         }
