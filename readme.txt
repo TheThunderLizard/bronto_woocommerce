@@ -11,20 +11,26 @@ Easily integrate Bronto with your WooCommerce stores. Makes it simple to send ab
 
 == Description ==
 
-By adding the Bronto plugin, you'll allow Bronto to connect with your WooCommerce store. This will send data about abandoned carts, orders, customers and products to Bronto so you can easily set up newsletters and automated emails to grow your business.
+By adding the Bronto plugin, you'll allow Bronto to connect with your WooCommerce store. This will send data about abandoned carts, orders, and opt-ins to Bronto so you can easily set up newsletters and automated emails to grow your business.
 
 **Features**
 
 Bronto for WooCommerce has the following features:
 
-- Tracks when customers add to cart, enabling cart recovery before checkout.
+- Tracks when customers add to cart, enabling cart recovery *before* checkout.
 - Tracks when customers begin checking out and complete checkouts, enabling order capture.
+- Provides URL to regenerate customers shoppers cart when returning to site from Cart Recovery email.
+- Add Email Sign-up to footer, checkout and sidebar
+- Embed a customized email sign up, customizing the title, description and button text.
+- If you use SMS, Order Notification Consent is supported for confirm orders or supplying updates via SMS.
 - Easily deploy Browse Recovery and Pop-up Manager
+- Easily enable Coupon Manager redemption tracking to measure & optimize future promotions. 
+- Easily deploy Recommendations Web to your product detail pages
 - Embed a customized email sign up, customizing the title, description and button text.
 
 **Usage**
 
-Install the Bronto for WooCommerce plugin. In your Bronto account, enter your WooCommerce API keys. After that you'll see WooCommerce data in Bronto and you can set up abandoned cart emails with product images and your store's branding.
+Install the Bronto for WooCommerce plugin. After that you'll see WooCommerce data in Bronto and you can set up abandoned cart emails with product images and your store's branding.
 
 To add a newsletter sign up, select the Bronto email sign up widget from the Appearance > Widgets section.
 

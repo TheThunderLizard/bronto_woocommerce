@@ -32,12 +32,12 @@ class WPBrontoAdmin {
                       <li><a href="#help-4">Where do I find my Coupon Manager ID?</a></li>
                       <li><a href="#help-5">What is SMS Order Consent?</a></li>
                       <li><a href="#help-6">What is this "PDP Selector" setting?</a></li>
+                      <li><a href="#help-6">What do I use for a Browse Recovery selector?</a></li>
                     </ol>
                     <h3 id="help-1">1. Where do I find my Bronto Script Manager ID?</h3>
                     <p>
                       You can find your Bronto Script Manager ID by going to SETTINGS &raquo; INTEGRATIONS &raquo; <a href="https://app.bronto.com/mail/pref/script_manager/">SCRIPT MANAGER</a> in Bronto.
-                      If you click  <strong>get code</strong> the overlay will load with your unique script.
-                      The value that is after <code>sites/</code> and up to <code>/assets</code> this is the ID you will need.<br /><br />
+                      If you click  <strong>get code</strong> the overlay will load with your unique script.  The value that is after <code>sites/</code> and up to <code>/assets</code> this is the ID you will need.<br /><br />
 
                       Once you have added the Script Manager ID you will be able to toggle features on and off from script manager in Bronto.
                     </p>
@@ -51,8 +51,7 @@ class WPBrontoAdmin {
                     </p>
                     <h3 id="help-4">4. Where do I find my Pop-up Manager ID?</h3>
                     <p>
-                      You can find your Coupon Manager ID by going to <a href="https://app.bronto.com/mail/apps/app/2/">COMMERCE &raquo; COUPON MANAGR &raquo; SETTINGS</a>.<br />
-                      In the overlay that loads you will see "Account ID" and a value that looks like this: <code>yW5XxZKGFM6nJpBuZCmabNdMeKEsbsQI8euRMqLczpWU</code>.  Copy this value.
+                      You can find your Coupon Manager ID by going to <a href="https://app.bronto.com/mail/apps/app/2/">COMMERCE &raquo; COUPON MANAGR &raquo; SETTINGS</a>.  In the overlay that loads you will see "Account ID" and a value that looks like this: <code>yW5XxZKGFM6nJpBuZCmabNdMeKEsbsQI8euRMqLczpWU</code>.  Copy this value.
                     </p>
                     <h3 id="help-5">5. What is SMS Order Consent?</h3>
                     <p>
@@ -61,6 +60,11 @@ class WPBrontoAdmin {
                     <h3 id="help-6">6. What is this "PDP Selector" setting?</h3>
                     <p>
                       The PDP selector is a "css selector" used to determine where you want web recommendations to appear.
+                    </p>
+                    <h3 id="help-7">7. What do I use for a Browse Recovery selector?</h3>
+                    <p>
+                      By navigating to <a href="https://app.bronto.com/mail/apps/app/2/">SETTINGS &raquo; PLATFORM &raquo; BROWSE</a> you can access a menu by clicking a little gear icon (alternatively this menu might have moved to SETTINGS &raquo; INTEGRATIONS &raquo; SCRIPT MANAGER). Set "Ecommerce Platform" to <code>Other None</code> then set "Email Selectors" to <code>input[type="email"]</code>, then set the "Product ID Selector Type" to <code>JSON</code>and finally the "Product ID Selector
+" to <code>brontoBrowseObject["product"]["id"]</code>.
                     </p>';
 
         $content = $this->postbox('bronto-help', 'FAQ', $content);
