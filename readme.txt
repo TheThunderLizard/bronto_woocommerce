@@ -45,7 +45,7 @@ To add a newsletter sign up, select the Bronto email sign up widget from the App
 
 = Where is the Bronto code added? =
 
-Our Script Manager code is added to the &lt;head&gt; section of your theme by default. It should be somewhere near the bottom of that section.
+Our Script Manager code is added to the <head> section of your theme by default. It should be somewhere near the bottom of that section.
 
 == Screenshots ==
 
