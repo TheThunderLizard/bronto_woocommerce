@@ -1,6 +1,7 @@
 === Bronto for WooCommerce ===
 Contributors: TheThunderLizard
-Tags: bronto, woocommerce, email, marketing automation, marketing
+Donate link: https://www.bronto.com
+Tags: analytics, email, marketing, bronto, woocommerce
 Requires at least: 3.0
 Tested up to: 
 Stable tag: 1.0.0
@@ -45,7 +46,7 @@ To add a newsletter sign up, select the Bronto email sign up widget from the App
 
 = Where is the Bronto code added? =
 
-Our Script Manager code is added to the <head> section of your theme by default. It should be somewhere near the bottom of that section.
+Our Script Manager code is added to the &lt;head&gt; section of your theme by default. It should be somewhere near the bottom of that section.
 
 == Screenshots ==
 
