@@ -11,8 +11,8 @@ Bronto supported features include:
 - **Pop-up Manager** - easily deploy Bronto's Pop-up Manager.
 - **Newsletter Sign-up **- include a sign-up call-to-action in checkout.
 - **SMS Order Notifications** - include sms consent at checkout for sms order notifications.
-- **Browse Recovery** - makes your product ID readily accessible to Bronto.
-- **Web Recommendations*- handles easily deploying these to your product pages.
+- ** Browse Recovery **- makes your product ID readily accessible to Bronto.
+- **Web Recommendations **- handles easily deploying these to your product pages.
 - **Coupon Manager** - support for sending redeemed coupons back to Bronto.
 - **Sign-Up Widget** - support for sign-up widget in Wordpress.
 
@@ -20,5 +20,4 @@ Bronto supported features include:
 
 For additional details please visit:  https://thunderlizard.gitbook.io/workspace/
 
-![Screenshot](https://github.com/TheThunderLizard/bronto_woocommerce/blob/master/screenshot.png "Screenshot")
-
+[![Screenshot](https://github.com/TheThunderLizard/bronto_woocommerce/blob/master/screenshot.png "Screenshot")](https://thunderlizard.gitbook.io/workspace/ "Screenshot")
