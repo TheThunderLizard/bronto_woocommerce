@@ -9,10 +9,10 @@ Bronto supported features include:
 - **Order Capture** - all orders & line item details are sent at the time of transaction.
 - **Conversion Tracking** - orders influenced by email click-through will be tracked.
 - **Pop-up Manager** - easily deploy Bronto's Pop-up Manager.
-- **Newsletter Sign-up **- include a sign-up call-to-action in checkout.
+- **Newsletter Sign-up** - include a sign-up call-to-action in checkout.
 - **SMS Order Notifications** - include sms consent at checkout for sms order notifications.
-- ** Browse Recovery **- makes your product ID readily accessible to Bronto.
-- **Web Recommendations **- handles easily deploying these to your product pages.
+- **Browse Recovery** - makes your product ID readily accessible to Bronto.
+- **Web Recommendations** - handles easily deploying these to your product pages.
 - **Coupon Manager** - support for sending redeemed coupons back to Bronto.
 - **Sign-Up Widget** - support for sign-up widget in Wordpress.
 
