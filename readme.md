@@ -1,5 +1,5 @@
 # Bronto for WooCommerce
-This package contains the working components for a WordPress / WooCommerce plugin to to connect your WooCommerce store to Bronto.  More [information](https://thunderlizard.gitbook.io/workspace/ "information").
+This package contains the components that comprise a WordPress / WooCommerce plugin to connect your WooCommerce store to Bronto.  More [information](https://thunderlizard.gitbook.io/workspace/ "information").
 
 ### Features
 Bronto supported features include:
