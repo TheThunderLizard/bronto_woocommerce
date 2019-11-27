@@ -70,9 +70,9 @@ class Bronto_EmailSignUp_Widget extends WP_Widget {
 						var _bod = document.getElementsByTagName('body')[0]; 
 						var _pixel = document.createElement("img"); 
 						var _url = "//app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&createCookie=1"; 
-						_pixel.src = _url + "&id=<?php echo $bronto_settings['bronto_direct_add_id'] ?>&email=" + _email + "list1=<?php echo $list_id ?>"; 
+						_pixel.src = _url + "&id=<?php echo $bronto_settings['bronto_direct_add_id'] ?>&email=" + _email + "&list1=<?php echo $list_id ?>"; 
 						_bod.appendChild(_pixel); 
-						document.querySelectorAll('.success_message')[i].innerText = "YOU HAVE BEEN SUBSCRIBED"; 
+						document.querySelectorAll('.success_message')[i].innerText ="YOU HAVE BEEN SUBSCRIBED"; 
 						document.querySelectorAll('.success_message')[i].style.display="block";
 						document.querySelectorAll('.success_message')[i].style.color="#0ebb1c";
 						break;
