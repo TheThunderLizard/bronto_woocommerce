@@ -32,7 +32,7 @@ class Bronto_EmailSignUp_Widget extends WP_Widget {
             echo $before_title . $title . $after_title;
         }
 
-        echo '  <input type="hidden" name="g" value="' . $list_id . '">' . "\n";
+        echo '  <input type="hidden" name="bronto_list" value="' . $list_id . '">' . "\n";
 
         if(!empty($description)) {
           echo '  <p>' . $description . '</p>' . "\n";
@@ -48,48 +48,49 @@ class Bronto_EmailSignUp_Widget extends WP_Widget {
         echo '  <div class="error_message" style="display:none;"></div>' . "\n";
         echo '</div>' . "\n";
         ?>
+        
         <script type="text/javascript">
         
-        var selectors = ["button[type ='submit']","input[type ='submit']"];
+			var selectors = ["button[type ='submit']","input[type ='submit']"];
 
-function validateEmail(email) {
-  var re = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
+			function validateEmail(email) {
+			  var re = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			  return re.test(String(email).toLowerCase());
+			}
 
-function runListeners(brSelector){
-  var brSubBtn = document.querySelectorAll(brSelector); 
-  for (var i = 0; i < brSubBtn.length; i++) { 
-    brSubBtn[i].addEventListener("click", function(){
-      var _email= ""; 
-      for (var j = 0; j < document.querySelectorAll("input[type='email']").length; j++) { 
-        if (document.querySelectorAll("input[type='email']")[j].value) {
-          _email = document.querySelectorAll("input[type='email']")[j].value; 
-          if (validateEmail(_email)){
-            var _bod = document.getElementsByTagName('body')[0]; 
-            var _pixel = document.createElement("img"); 
-            var _url = "//app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&createCookie=1"; 
-            _pixel.src = _url + "&id=<?php echo $bronto_settings['bronto_direct_add_id'] ?>&email=" + _email; 
-            _bod.appendChild(_pixel); 
-            document.querySelector('.success_message').innerText = "YOU HAVE BEEN SUBSCRIBED"; 
-            document.querySelector('.success_message').style.display="block";
-            document.querySelector('.success_message').style.color="#0ebb1c";
-            break;
-          } else {
-            document.querySelector('.error_message').innerText="INVALID EMAIL ADDRESS";
-            document.querySelector('.error_message').style.display="block";
-            document.querySelector('.success_message').style.color="#bb0e1d";
-            break;
-          }
-        }
-      }
-    })
-  }
-}
+			function runListeners(brSelector){
+			  var brSubBtn = document.querySelectorAll(brSelector); 
+			  for (var i = 0; i < brSubBtn.length; i++) { 
+				brSubBtn[i].addEventListener("click", function(){
+				  var _email= ""; 
+				  for (var j = 0; j < document.querySelectorAll("input[type='email']").length; j++) { 
+					if (document.querySelectorAll("input[type='email']")[j].value) {
+					  _email = document.querySelectorAll("input[type='email']")[j].value; 
+					  if (validateEmail(_email)){
+						var _bod = document.getElementsByTagName('body')[0]; 
+						var _pixel = document.createElement("img"); 
+						var _url = "//app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&createCookie=1"; 
+						_pixel.src = _url + "&id=<?php echo $bronto_settings['bronto_direct_add_id'] ?>&email=" + _email + "list1=<?php echo $list_id ?>"; 
+						_bod.appendChild(_pixel); 
+						document.querySelectorAll('.success_message')[i].innerText = "YOU HAVE BEEN SUBSCRIBED"; 
+						document.querySelectorAll('.success_message')[i].style.display="block";
+						document.querySelectorAll('.success_message')[i].style.color="#0ebb1c";
+						break;
+					  } else {
+						document.querySelectorAll('.error_message')[i].innerText="INVALID EMAIL ADDRESS";
+						document.querySelectorAll('.error_message')[i].style.display="block";
+						document.querySelectorAll('.success_message')[i].style.color="#bb0e1d";
+						break;
+					  }
+					}
+				  }
+				})
+			  }
+			}
 
-for (var i = 0; i < selectors.length; i++) { 
-  runListeners(selectors[i]);
-};
+			for (var i = 0; i < selectors.length; i++) { 
+			  runListeners(selectors[i]);
+			};
 		
 		</script>
 		<?php

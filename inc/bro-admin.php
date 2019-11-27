@@ -74,8 +74,7 @@ class WPBrontoAdmin {
     function settings() {
         $bronto_settings = $this->process_settings();
 
-        $content = '<p>The settings below help to deploy <a href="https://help.bronto.com/bmp/reference/r_bmp_scripts_overview.html">Bronto Script Manager</a> to your site, which will allow you to easily deploy other features to your WooCommerce store. You can find this ID on your Bronto <a href="https://app.bronto.com/mail/pref/script_manager/">Script Manager page</a>.</p>
-            <p>Insert your Bronto List ID to add a newsletter checkbox on the checkout page. To find a List ID, open the list in Bronto and copy the value in the lower right corner of the page - looks like this: <code>010300000000040000000000060007008000</code>.</p>';
+        $content = '<p>The settings below help to deploy <a href="https://help.bronto.com/bmp/reference/r_bmp_scripts_overview.html">Bronto Script Manager</a> to your site, which will allow you to easily deploy other features to your WooCommerce store. You can find this ID on your Bronto <a href="https://app.bronto.com/mail/pref/script_manager/">Script Manager page</a>.</p>';
 
         if (function_exists('wp_nonce_field')) {
           $content .= wp_nonce_field('bronto-update-settings', '_wpnonce', true, false);
@@ -85,7 +84,7 @@ class WPBrontoAdmin {
         $content .= '<div><input type="checkbox" name="bronto_popup" value="true" ' . checked($bronto_settings['bronto_cart_debug'], 'true', false) . ' /><label for="bronto_cart_debug"><h4 class="inline">Enable Cart Debug (print logging)</h4></label></div>';
         $content .= '<hr>';
         $content .= '<div><label for="bronto_newsletter_text"><h4>Subscribe to newsletter text</h4></label><input type="text" class="regular-text" name="bronto_newsletter_text" placeholder="Eg. Sign-up For our Emails" value="' . $bronto_settings['bronto_newsletter_text'] . '" /></div>';
-        $content .= '<div><label for="bronto_newsletter_list_id"><h4>List ID (enables checkout opt-in)</h4></label><input type="text" class="regular-text" name="bronto_newsletter_list_id" placeholder="Bronto list ID" value="' . $bronto_settings['bronto_newsletter_list_id'] . '" /></div>';
+        $content .= '<div><label for="bronto_newsletter_list_id"><h4>List ID (enables checkout opt-in)</h4></label><span>Insert your Bronto List ID to add a newsletter checkbox on the checkout page. To find a List ID, open the list in Bronto and copy the value in the lower right corner of the page - looks like this: <code>010300000000040000000000060007008000</code>.</span><br><input type="text" class="regular-text" name="bronto_newsletter_list_id" placeholder="Bronto list ID" value="' . $bronto_settings['bronto_newsletter_list_id'] . '" /></div>';
 		$content .= '<div><label for="bronto_direct_add_id"><h4>Direct Add ID</h4></label><input type="text" class="regular-text" name="bronto_direct_add_id" placeholder="Bronto Direct Add ID" value="' . $bronto_settings['bronto_direct_add_id'] . '" /></div>';
 		$content .= '<hr>';
         $content .= '<div><label for="bronto_sms_order_updates_text"><h4>Enable SMS order consent</h4></label><input type="text" class="regular-text" name="bronto_sms_order_updates_text" placeholder="Eg. I\'d like Text Message updates for this order." value="' . $bronto_settings['bronto_sms_order_updates_text'] . '" /></div>';
