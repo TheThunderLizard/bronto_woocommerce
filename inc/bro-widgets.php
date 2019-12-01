@@ -51,7 +51,7 @@ class Bronto_EmailSignUp_Widget extends WP_Widget {
         
         <script type="text/javascript">
         
-			var selectors = ["button[type ='submit']","input[type ='submit']"];
+			var selectors = [".bronto_submit_button"];
 
 			function validateEmail(email) {
 			  var re = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

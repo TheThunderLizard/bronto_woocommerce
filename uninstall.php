@@ -7,7 +7,7 @@
  * @author    Bronto
  * @category  Core
  * @package   WooCommerceBronto/Uninstaller
- * @version   0.9.0
+ * @version   1.0.2
  */
 if( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) 
   exit();

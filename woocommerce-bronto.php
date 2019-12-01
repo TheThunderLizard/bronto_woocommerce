@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: Bronto for WooCommerce V1
+ * Plugin Name: Bronto for WooCommerce
  * Plugin URI: https://github.com/TheThunderLizard/bronto_woocommerce
  * Description: A plugin to automatically sync your WooCommerce carts, orders, and newsletter sign-ups.  Also enables Browse Recovery, Cart recovery, and pop-up sign-up and checkout opt-in.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: ThunderLizard
  * Author URI: https://github.com/TheThunderLizard/bronto_woocommerce
  * Requires at least: 
  * Tested up to: 
  * WC requires at least: 3.0
- * WC tested up to: 3.5.0
+ * WC tested up to: 3.8.1
  * Text Domain: woocommerce-bronto
  * Domain Path: /i18n/languages/
  *
@@ -347,7 +347,6 @@ class WPBronto {
                 'bronto_newsletter_text' => '',
                 'bronto_sms_order_updates_text' => '',
                 'bronto_coupon_manager_id' => '',
-                'bronto_popup' => '',
                 'bronto_popup_id' => '',
                 'bronto_direct_add_id' => '',
                 'bronto_web_recs_pdp' => '',
